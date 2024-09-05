@@ -57,15 +57,14 @@ function Portfolio() {
     img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
     category: "Flayers"
   }]
+  const filteredProjects = projectsList.filter((item) => item.category === selected)
   return (
     <>
        <Toolbar
           filters={filters}
           selected={selected}
-          onSelectFilter={() => {
-            console.log(selected)
-          }}/>
-        <ProjectList projects = {projectsList}/>
+          />
+        <ProjectList projects = {filteredProjects}/>
     </>
   );
 }
