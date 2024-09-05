@@ -1,10 +1,11 @@
 import Toolbar from "./Toolbar";
 import ProjectList from "./ProjectList";
+import { useState } from "react";
 
 function Portfolio() {
-  
+  const [selected, setSelected] = useState("Websites")
   const filters = ["All", "Websites", "Flayers", "Business Cards"];
-  const selected = "Websites";
+
   const projectsList = [{
     img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
     category: "Business Cards"
@@ -57,12 +58,16 @@ function Portfolio() {
     img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
     category: "Flayers"
   }]
-  const filteredProjects = projectsList.filter((item) => item.category === selected)
+  const filteredProjects =selected === 'All'? projectsList : projectsList.filter((item) => item.category === selected)
   return (
     <>
        <Toolbar
           filters={filters}
           selected={selected}
+          onSelectFilter = {(event) => {
+            
+            setSelected(event.currentTarget.textContent)
+          }}
           />
         <ProjectList projects = {filteredProjects}/>
     </>
